@@ -1,0 +1,19 @@
+# 主题id，唯一
+id: default
+# 主题名称
+name: 极光建站
+author:
+  # 作者名称
+  name: nineya
+  # 作者网址
+  website: https://www.nineya.com
+# 主题logo地址
+logo: https://q1.qlogo.cn/g?b=qq&nk=361654768&s=640
+# 主题描述
+description: '极光建站默认主题'
+# 主题地址
+website: https://aurora.nineya.com
+# 版本号
+version: 0.0.1
+# 最低支持的 Aurora 版本
+require: 0.0.1
