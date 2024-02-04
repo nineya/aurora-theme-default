@@ -1,0 +1,28 @@
+.navbar {
+  background-color: #fff;
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo img {
+    max-height: 2rem;
+  }
+
+  nav .item {
+    height: 3.5rem;
+    line-height: 3.5rem;
+    font-size: 1.1rem;
+    padding: 0 8px;
+    margin-right: 16px;
+    color: var(--title);
+
+    &:hover {
+      color: var(--theme);
+    }
+  }
+}

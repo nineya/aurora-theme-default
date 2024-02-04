@@ -5,9 +5,9 @@
 // 平板最小宽度
 @table-min-width: 769px;
 // 笔记本电脑最小宽度
-@laptop-min-width: 1024px;
+@laptop-min-width: 1216px;
 // 桌面设备最小宽度
-@desktop-min-width: 1216px;
+@desktop-min-width: 1408px;
 // 显示器最小宽度
 @display-min-width: 1700px;
 // 宽屏设备最小宽度
@@ -19,4 +19,64 @@
   box-sizing: border-box;
   outline: 0;
   -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  --theme: #50bfff;
+  --main: #606266;
+  --title: #444;
+}
+
+a {
+  color: var(--theme);
+  cursor: pointer;
+  text-decoration: none;
+  word-break: break-all;
+
+  &:hover {
+    color: var(--main);
+  }
+}
+
+.container {
+  margin: 0 auto;
+  position: relative;
+  width: auto;
+}
+
+@media (min-width: @table-min-width) {
+
+}
+
+
+@media (min-width: @laptop-min-width) {
+
+  .container {
+    max-width: 1152px;
+  }
+}
+
+
+@media (min-width: @desktop-min-width) {
+
+  .container {
+    max-width: 1344px;
+  }
+}
+
+@media (min-width: @display-min-width) {
+
+  .container {
+    max-width: 1600px;
+  }
+
+}
+
+@media (min-width: @widescreen-min-width) {
+  html {
+    font-size: 15px;
+  }
+  .container {
+    max-width: 1800px;
+  }
 }

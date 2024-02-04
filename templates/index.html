@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>{{.Site.SiteName}}</title>
+    <link rel="preload stylesheet" as="style" href="{{.ThemeBase}}/assets/css/style.min.css">
 </head>
 <body>
-
+{{template "modules/navbar/index.html" .}}
+{{template "modules/banner/index.html" .}}
+{{"sss" | txt}}
 </body>
 </html>
