@@ -64,7 +64,7 @@ task('css', () => {
         cascade: false,
       })
     )
-    .pipe(concat('style.css'))
+    .pipe(concat('main.css'))
   if (!devModel) {
     gw = gw.pipe(minifyCSS())
   }
@@ -77,50 +77,22 @@ task('css', () => {
 })
 
 task('js', () => {
-  const readFile = (prefix, dir, ignoreFiles) => {
-    let result = {}
-    let files = fs.readdirSync(dir, 'utf-8')
-    files.forEach((file) => {
-      let filePath = path.join(dir, file)
-      let states = fs.statSync(filePath)
-      if (states.isDirectory()) {
-        Object.assign(result, readFile(path.join(prefix, file), filePath, ignoreFiles))
-      } else if (ignoreFiles.length
-        ? /\.js$/.test(file) && !ignoreFiles.includes(path.join(prefix, file))
-        : /\.js$/.test(file)) {
-        const fileName = file.replace(/.js$/, '')
-        result[path.join(prefix, fileName)] = resolve(filePath)
-      }
-    })
-    return result
-  }
-  const getEntryData = () => {
-    return readFile('', './src/js', [])
+  const ignoreFiles = [].map((file) => `./src/js/${file}.js`)
+
+  let gw = src(['./src/js/**/*.js', './templates/modules/**/*.js'], {
+    ignore: ignoreFiles,
+  })
+    .pipe(concat('main.js'))
+
+  if (!devModel) {
+    gw = gw.pipe(uglify())
   }
 
-  return webpack({
-    mode: devModel ? 'development' : 'production',
-    entry: getEntryData(),
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          loader: 'babel-loader',
-          include: resolve('source'),
-          exclude: resolve('node_modules'),
-          options: {
-            presets: ['@babel/preset-env'],
-            plugins: ['@babel/plugin-transform-runtime'],
-          },
-        },
-      ],
-    },
-    stats: 'errors-only',
-    output: {
-      filename: '[name].min.js',
-    },
-  })
-    .pipe(uglify())
+  return gw.pipe(
+    rename({
+      suffix: '.min',
+    })
+  )
     .pipe(dest(jsPath))
 })
 
