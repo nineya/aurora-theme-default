@@ -1,15 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <title>{{.Site.SiteName}}</title>
-    <link rel="preload stylesheet" as="style" href="{{.ThemeBase}}/assets/css/main.min.css">
-    <script src="{{.ThemeBase}}/assets/js/main.min.js"></script>
+    {{template "common/head.html" .}}
 </head>
 <body>
 {{template "modules/navbar/index.html" .}}
 {{template "modules/banner/index.html" .}}
-{{"sss" | txt}}
 {{template "modules/footer/index.html" .}}
 {{template "modules/toolbar/index.html" .}}
 </body>
